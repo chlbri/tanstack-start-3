@@ -14,10 +14,14 @@ function Home() {
     <button
       type="button"
       onClick={() => {
-        updateCount({ data: 2 }).then(() => router.invalidate());
+        updateCount({
+          data: {
+            increment: 2,
+          },
+        }).then(() => router.invalidate());
       }}
     >
-      Add 1 to {state}
+      Add to {state}
     </button>
   );
 }
