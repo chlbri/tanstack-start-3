@@ -1,27 +1,8 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { getCount, updateCount } from "../functions";
+import { createFileRoute } from '@tanstack/react-router';
+import { getCount } from '../functions';
+import { Home } from './index.component';
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
   component: Home,
   loader: async () => await getCount(),
 });
-
-function Home() {
-  const state = Route.useLoaderData();
-  const router = useRouter();
-
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        updateCount({
-          data: {
-            increment: 2,
-          },
-        }).then(() => router.invalidate());
-      }}
-    >
-      Add to {state}
-    </button>
-  );
-}
