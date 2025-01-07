@@ -6,11 +6,12 @@ import tsconfig from './tsconfig.json';
 
 const plugins = [
   aliasTs(tsconfig as any),
-  exclude({
+  exclude.withPattern('./app/**/*.ts', {
     ignoreCoverageFiles: [
       '**/index.ts',
       '**/types.ts',
       '**/*.typegen.ts',
+      '**/*.gen.ts',
       '**/*.fixtures.ts',
       '**/fixtures.ts',
       '**/*.fixture.ts',
