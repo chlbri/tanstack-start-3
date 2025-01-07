@@ -5,7 +5,9 @@ import {
 } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
 import type { ReactNode } from 'react';
-import appCss from '../index.css?url';
+// @ts-expect-error I don' know why ?
+import href from '../client.css?url';
+import Layout from '../components/root/layout';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -21,7 +23,7 @@ export const Route = createRootRoute({
         title: 'TanStack Start Starter',
       },
     ],
-    links: [{ rel: 'stylesheet', href: appCss }],
+    links: [{ rel: 'stylesheet', href }],
   }),
   component: RootComponent,
 });
@@ -36,11 +38,12 @@ function RootComponent() {
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html>
+    <html lang='en'>
       <head>
         <Meta />
       </head>
-      <body className='py-5'>
+      <body className='py-5 px-3 min-h-full flex flex-1 flex-col space-y-8'>
+        <Layout />
         {children}
         <ScrollRestoration />
         <Scripts />
