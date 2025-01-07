@@ -8,7 +8,17 @@
     "name": "chlbri"
   },
   "scripts": {
+    "config": "pnpm install",
+    "config:off": "pnpm run config --offline",
+    "lint": "echo \"lint\"",
+    "test:coverage": "vitest run",
+    "test": "pnpm run test:coverage --no-coverage",
+    "test:type": "pnpm run test:coverage -c \"vitest.config.type.ts\" --no-coverage",
+    "test:no-type": "pnpm run test:coverage -c \"vitest.config.notype.ts\" --no-coverage",
+    "ci": "pnpm run config:off && pnpm run lint && pnpm run build && pnpm run test && pnpm run build",
+    "ci:admin": "pnpm run rm && pnpm run ci",
     "dev": "vinxi dev",
+    "build:vercel": "vinxi build --preset vercel",
     "build": "vinxi build",
     "start": "vinxi start"
   },
@@ -26,12 +36,18 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@bemedev/vitest-alias": "^0.0.3",
+    "@bemedev/vitest-exclude": "^0.0.2",
+    "@bemedev/vitest-extended": "^0.4.1",
     "@types/react": "^19.0.3",
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^2.1.8",
     "autoprefixer": "^10.4.20",
+    "husky": "^9.1.7",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   }
 }
